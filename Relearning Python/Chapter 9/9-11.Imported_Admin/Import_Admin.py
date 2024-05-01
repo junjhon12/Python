@@ -5,3 +5,7 @@ make an Admin instance, and call show_privileges() to show that everything is
 working correctly.
 """
 
+from Privileges import *
+
+admin1 = Admin('')
+admin1.show_privileges()
