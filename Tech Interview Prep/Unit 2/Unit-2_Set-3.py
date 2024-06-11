@@ -10,7 +10,7 @@ def peak_index_in_mountain_list(mountain_lst) :
     output = 0
     for i in mountain_lst :
         if i < mountain_lst[i-1] :
-            return i
+            return i-1
     
     
 mountain_lst = [0,3,8,0]
