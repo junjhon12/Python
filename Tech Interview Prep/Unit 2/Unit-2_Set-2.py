@@ -132,3 +132,62 @@ products = {"Product1": 10, "Product2": 2, "Product3": 5, "Product4": 3}
 restock_threshold = 5
 print(get_items_to_restock(products, restock_threshold)) 
 print()
+
+"""
+Imagine you're contributing to a move recommendation engine, and you're tasked with writing a function named most_popular_genre() that returns the genre with the highest average rating across all movies.
+
+The function takes in a list of dictionaries named movies as a parameter. Each dictionary represents data associated with a movie, including its title, genre, and rating. The function calculates the average rating for each genre and returns the genre with the highest average rating.
+"""
+
+def most_popular_genre(movies) :
+    output = {}
+    # Loop through movies items
+    for i in movies :
+        # find the max rating if it doesn't equal 0
+        if max(movies, key=lambda i: i["rating"]) != 0 :
+            # return the highest rating genre
+            return i["genre"]
+movies = [
+    {"title": "Inception",
+     "genre": "Science Fiction",
+     "rating": 8.8
+    },
+    {"title": "The Matrix", 
+     "genre": "Science Fiction",
+     "rating": 8.7
+    },
+    {"title": "Pride and Prejudice", 
+     "genre": "Romance",
+     "rating": 7.8
+    },
+    {"title": "Sense and Sensibility", 
+     "genre": "Romance",
+     "rating": 7.7
+    }
+]
+
+print(most_popular_genre(movies))
+print()
+
+"""
+Write a function quality_control() that takes in a dictionary product_scores and an integer threshold as parameters. The dictionary product_scores has key-value pairs that represent a product ID and its quality rating.
+If the product has a score greater than or equal to threshold, the function categorizes it as a "pass".
+If the product has a score less than threshold, the function categorizes it as a "fail".
+The function returns a new dictionary where the key-value pair is the product ID and whether it is a "pass" or "fail".
+"""
+def quality_control(scores, threshold) :
+    output = {}
+    # loop through the key(i) and values(j) of the score's items
+    for i, j in scores.items() :
+        # Checks if the values(j) is less than threshold(60)
+        if j < threshold :
+            # Set the added key(i) value(j) to "fail" if less than threshold(60)
+            output[i] = "fail"
+        else:
+            # Set the added key(i) value(j) to "pass" if greater than threshold(60)
+            output[i] = "pass"
+    print(output)
+            
+scores = {"x0123": 75, "x0124": 40, "x0125": 90, "x0126": 55}
+threshold = 60
+print(quality_control(scores, threshold))
