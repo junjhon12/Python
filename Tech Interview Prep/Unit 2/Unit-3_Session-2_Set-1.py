@@ -79,16 +79,64 @@ time_series is a list of integers that represents the times at which Teemo attac
 If Teemo hits Ashe while she is still poisoned, the poison's duration starts over. For example, if Teemo attacks at times 1 and 4 for 3 seconds, the states at each time would be:
 """
 def find_poisoned_duration(time_series, duration):
-    print(time_series[0])
-    i = 0
-    while i <= time_series[-1]:
+    last_num = int(time_series[-1])
+    i = 1
+    duration_left = duration
+    count = 0
+    while i <= last_num:
+        if i == 1 :
+            print(f"{i}: attack")
+        elif i in time_series:
+            print(f'{i}: attacked, poison duration resets to {duration}')
+            duration_left = duration
+        else :
+            if duration_left <= 0 :
+                print(f'{i}: in normal state')
+            else:
+                print(f'{i}: in poison state')
+                count += 1
+                last_num += 0.5
+            duration_left -= 1
         i += 1
-        if i == time_series[i]:
-            print("same")
-            i += 1
-        else:
-            print("not same")
+    return count
         
 time_series = [1,4,9]
 damage = find_poisoned_duration(time_series, 3)
 print(damage)
+print()
+
+"""
+Problem 6: Sum Unique Elements
+Write a function sum_of_unique_elements() that takes in two lists of integers, lst1 and lst2, as parameters and returns the sum of the elements that are unique in lst1.
+
+An element is unique if:
+
+it appears exactly once in lst1
+it does not appear in lst2
+"""
+def sum_of_unique_elements(lst1, lst2):
+    # Use sets for faster lookup and operations
+    set1 = set(lst1)
+    set2 = set(lst2)
+    # Initialize sum of unique elements
+    sum_unique = 0
+    # Iterate through elements in set1
+    for num in set1:
+        # Check if num appears exactly once in lst1 and does not appear in lst2
+        if lst1.count(num) == 1 and num not in set2:
+            sum_unique += num
+    return sum_unique
+            
+        
+lstA = [1, 2 ,3, 4] 
+lstB = [3, 4, 5, 6]
+lstC = [7, 7, 7, 7]
+
+sum1 = sum_of_unique_elements(lstA, lstB)
+print(sum1)
+sum2 = sum_of_unique_elements(lstC, lstB)
+print(sum1)
+
+date = 'DD-MM-YYYY'
+month = date[3:5]
+print(month)
