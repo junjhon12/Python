@@ -257,3 +257,25 @@ print(rev_s1)
 s2 = "leetcode"
 rev_s2 = reverse_vowels(s2)
 print(rev_s2)
+print()
+
+"""
+Problem 6: Two-Pointer Remove Element
+The two-pointer approach can also be used with two pointers that iterate forward through a list or string at different rates. Use two pointers to solve the following problem:
+
+Write a function removeElement() that takes in a list nums and a value val as parameters and removes all instances of that value in-place. The function returns the new length of nums.
+"""
+def removeElement(nums, val): 
+    start = 0
+    end = len(nums) - 1
+    
+    while start < end :
+        if nums[start] in val :
+            nums.remove(start)
+            start += 1
+    return nums
+        
+nums = [5, 4, 4, 3, 4, 1]
+nums_len = removeElement(nums, 4)
+print(nums) # same list
+print(nums_len)
