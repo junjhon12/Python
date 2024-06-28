@@ -318,3 +318,137 @@ node_c = Node('c', node_d)
 node_b = Node('b', node_c)
 node_a = Node('a', node_b)
 print_linked_list(node_a)
+print("==============================================================================================")
+
+class Card():
+    def  __init__(self, suit, rank):
+        self.suit = suit
+        self.rank = rank
+  
+    def print_card(self):
+        print(f"{self.rank} of {self.suit}")
+        
+    def is_valid(self) :
+        valid_suits = ["Hearts", "Spades", "Clubs", "Diamonds"]
+        valid_ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+        if self.suit in valid_suits and self.rank in valid_ranks :
+            return True
+        return False
+    
+    def get_value(self) :
+        value = 0
+        num_ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        if self.rank in num_ranks :
+            value = int(card.rank)
+            return value
+        elif self.rank == "Ace" :
+            return 1
+        elif self.rank == "Jack" :
+            return 11
+        elif self.rank == "Queen" :
+            return 12
+        elif self.rank == "King" :
+            return 13
+        else:
+            return None
+class Hand:
+    def __init__(self):
+        self.cards = []
+
+    def add_card(self, card):
+        self.cards.append(card)
+        pass
+
+    def remove_card(self, card):
+        if card in self.cards :
+            self.cards.remove(card)
+        pass
+"""
+Problem 1: Card Class
+Step 1: Copy the following code into Replit.
+
+Step 2: Instantiate an instance of the class Card and store it in a variable named card. The Card object should have the suit "Spades" and the rank "8".
+"""
+card = Card("Spades", 8)
+"""
+Problem 2: Print Card
+Step 1: Update the Card class with the new method print_card() provided below:
+
+def print_card(self):
+	print(f"{self.rank} of {self.suit}")
+Step 2: Create an instance of the class and store it in a variable named card. The object should have suit "Clubs" and rank "Ace".
+
+Step 3: Then, call the method print_card() on your card.
+
+Expected Output: Ace of Clubs
+"""
+card.suit = "Clubs"
+card.rank = "Ace"
+card.print_card()
+print()
+"""
+Problem 3: Verify Update
+Step 1: Using the same Card class from Problem 2, update your code so that the suit of card is "Hearts" instead of "Clubs".
+
+Step 2: Use the print_card() method to verify that card was updated.
+
+Expected Output: Ace of Hearts
+"""
+card.suit = "Hearts"
+card.print_card()
+print()
+"""
+Problem 4: Valid Card
+Update the Card class with a new method is_valid() that takes in no parameters except self. The method should return True if:
+
+The suit is one of the following values: "Hearts", "Spades", "Clubs", "Diamonds"
+The rank is one of the following values: "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"
+Otherwise, the method should return False
+"""
+my_card = Card("Hearts", "7")
+print(my_card.is_valid())
+second_draw = Card("Spades", "Joker")
+print(second_draw.is_valid())
+print()
+"""
+Problem 5: Get Value
+Update the Card class with a new method get_value() that takes in no parameters except self.
+
+The function returns the card's value depending on the card's rank:
+
+If the card has rank 2, 3, 4, 5, 6, 7, 8, 9, 10, the method should return the rank as an integer
+If the card has rank Ace, the method should return 1 as the card's value
+If the card has rank Jack, the method should return 11 as the card's value
+If the card has rank Queen, the method should return 12 as the card's value
+If the card has rank King, the method should return 13 as the card's value
+If the card is invalid, the method should return None
+"""
+card = Card("Hearts", "7")
+print(card.get_value())
+card_two = Card("Spades", "Jack")
+print(card_two.get_value())
+print()
+"""
+Problem 6: Hand Class
+Step 1: Add the following Hand class to your code that represents a player's hand of cards.
+
+A new instance of Hand is always empty.
+Step 2: Add two methods add_card() and remove_card() to the Hand class that each accept a Card object as a parameter.
+
+add_card() should add the Card to the player's Hand
+remove_card() should remove the card from the player's Hand.
+"""
+card_one = Card("Hearts", "3")
+card_two = Card("Spades", "8")
+
+player1_hand = Hand()
+# cards = []
+
+player1_hand.add_card(card_one)
+# cards = [card_one]
+
+player1_hand.add_card(card_two)
+# cards = [card_one, card_two]
+
+player1_hand.remove_card(card_one)
+# cards = [card_two]
