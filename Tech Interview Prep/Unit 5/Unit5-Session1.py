@@ -363,6 +363,9 @@ class Hand:
         if card in self.cards :
             self.cards.remove(card)
         pass
+    
+    def sum_hand(self) :
+        
 """
 Problem 1: Card Class
 Step 1: Copy the following code into Replit.
@@ -452,3 +455,10 @@ player1_hand.add_card(card_two)
 
 player1_hand.remove_card(card_one)
 # cards = [card_two]
+"""
+Problem 7: Sum of Cards
+Write a function sum_hand() that takes in an instance of Hand as a parameter and returns the summed value of all cards in the hand.
+
+Use the methods from Problems 5-7 to assist you.
+If any card in the hand is invalid, return None.
+"""
