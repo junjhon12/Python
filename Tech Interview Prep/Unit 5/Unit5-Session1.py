@@ -331,15 +331,13 @@ class Card():
     def is_valid(self) :
         valid_suits = ["Hearts", "Spades", "Clubs", "Diamonds"]
         valid_ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
-        if self.suit in valid_suits and self.rank in valid_ranks :
-            return True
-        return False
+        return self.suit in valid_suits and self.rank in valid_ranks
     
     def get_value(self) :
         value = 0
         num_ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10"]
         if self.rank in num_ranks :
-            value = int(card.rank)
+            value = int(self.rank)
             return value
         elif self.rank == "Ace" :
             return 1
@@ -364,8 +362,15 @@ class Hand:
             self.cards.remove(card)
         pass
     
-    def sum_hand(self) :
-        
+    def sum_hand(hand) :
+        sum = 0
+        # Loop through items in self.cards = []
+        for card in hand.cards:
+            if not card.is_valid() : # Check if the card is valid using is_valid func from Card class
+                return None
+            sum += card.get_value() # Add value into sum after using get_value func from Card class
+        return sum
+            
 """
 Problem 1: Card Class
 Step 1: Copy the following code into Replit.
@@ -462,3 +467,127 @@ Write a function sum_hand() that takes in an instance of Hand as a parameter and
 Use the methods from Problems 5-7 to assist you.
 If any card in the hand is invalid, return None.
 """
+
+card_one = Card("Hearts", "3")
+card_two = Card("Hearts", "Jack")
+card_three = Card("Spades", "3")
+
+hand = Hand()
+hand.add_card(card_one)
+hand.add_card(card_two)
+hand.add_card(card_three)
+
+sum = hand.sum_hand()
+print(sum)
+print()
+"""
+Problem 8: Print Hand
+The class Card has been updated below with a new attribute next to represent the card that comes after it in a hand of cards.
+
+Write a function print_hand() that accepts a Card object and returns a list of all cards in the hand that come after it.
+"""
+class Card:
+    def __init__(self, suit, rank, next=None):
+        self.suit = suit
+        self.rank = rank
+        self.next = next
+    
+    def __repr__(self):
+        return f"Card('{self.suit}', '{self.rank}')"
+
+def print_hand(starting_card):
+    current = starting_card
+    output = []
+    while current:
+        output.append(current)
+        current = current.next
+    return output
+
+# Example Usage
+card_one = Card("Hearts", "3")
+card_two = Card("Hearts", "4")
+card_three = Card("Diamonds", "King")
+
+card_one.next = card_two
+card_two.next = card_three
+
+print(print_hand(card_one))
+print()
+"""
+Problem 9: Head and Tail Nodes
+A linked list is a new data type that, similar to a normal list or array, allows us to store pieces of data sequentially. The difference between a linked list and a normal list lies in how each element is stored in a computer’s memory.
+
+In a normal list, individual elements of the list are stored in adjacent memory locations according to the order they appear in the list. If we know where the first element of the list is stored, it’s really easy to find any other element in the list.
+
+In a linked list, the individual elements called nodes are not stored in sequential memory locations. Each node may be stored in an unrelated memory location. To connect nodes together into a sequential list, each node stores a reference or pointer to the next node in the list.
+
+Using the provided Node class below, create two nodes.
+
+The first node should have value 100 and be stored in a variable head.
+The second node should have value 200 and be stored in a variable tail.
+Set head to point to tail.
+"""
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+  
+def print_linked_list(head):
+    current = head
+    values = []
+    while current is not None:
+        values.append(current.value)
+        current = current.next
+    print(values)
+    return values
+  
+
+tail = Node(200)
+head = Node(100, tail)
+
+print(head.value) 
+print(head.next.value) 
+print(tail.value) 
+print(tail.next)
+print()
+"""
+Problem 10: Middle Node
+Within a linked list, we can redirect pointers to insert nodes at any place in the list.
+
+Create a new Node middle with value 150 and insert it between head and tail from Problem 9.
+"""
+
+tail = Node(200)
+middle = Node(150, tail)
+head = Node(100, middle)
+
+print(head.next.value) 
+print(middle.next.value)
+print(tail.next) 
+print()
+"""
+Problem 11: Zodiac Signs
+Create the list ["aries", "taurus", "gemini", "cancer"] as a linked list using the Node class:
+"""
+list_11 = ["aries", "taurus", "gemini", "cancer"]
+node_4 = Node(list_11[3])
+node_3 = Node(list_11[2], node_4)
+node_2 = Node(list_11[1], node_3)
+node_1 = Node(list_11[0], node_2)
+print(node_1.value, "->", node_1.next.value)
+print(node_2.value, "->", node_2.next.value)
+print(node_3.value, "->", node_3.next.value)
+print(node_4.value, "->", node_4.next)
+print()
+"""
+Problem 12: Print Linked List
+Write a function print_linked_list() that takes in a head of a linked list as a parameter. The function prints and returns a list of all the values in the linked list in the order they appear in the linked list.
+
+Note: The "head" of a linked list is the first element in the linked list, equivalent to lst[0] of a normal list.
+"""
+e = Node("e")
+d = Node("d", node_e)
+c = Node("c", node_d)
+b = Node("b", node_c)
+a = Node("a", node_b)
+print_linked_list(a)
