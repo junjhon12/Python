@@ -254,5 +254,60 @@ class Node:
 		self.value = value
 		self.next = next
 		self.prev = prev
-  
+
+# Create Nodes
+poliwag = Node("Poliwag")
+poliwhirl = Node("Poliwhirl")
+poliwrath = Node("Poliwrath")
+# Link Nodes
+poliwag.next = poliwhirl
+poliwhirl.prev = poliwag
+poliwhirl.next = poliwrath
+poliwrath.prev = poliwhirl
 print(poliwhirl.prev.value, "<->", poliwhirl.value, "<->", poliwhirl.next.value)
+print()
+
+"""
+Problem 10: Print Backwards
+Write a function print_reverse() that takes in the tail of a doubly linked list as a parameter.
+
+It should print out the values of the linked list in reverse order, each separated by a space.
+"""
+class Node:
+	def __init__(self, value, next = None, prev = None):
+		self.value = value
+		self.next = next
+		self.prev = prev
+		
+def print_reverse(tail):
+    current = tail
+    while current:
+        print(current.value, end=" ")
+        current = current.prev
+    print()  # for a newline
+    
+# Create Nodes
+poliwag = Node("Poliwag")
+poliwhirl = Node("Poliwhirl")
+poliwrath = Node("Poliwrath")
+# Link Nodes
+poliwag.next = poliwhirl
+poliwhirl.prev = poliwag
+poliwhirl.next = poliwrath
+poliwrath.prev = poliwhirl
+print_reverse(poliwrath)
+
+class Dog:
+    def __init__(self, name, breed, owner):
+        self.name = name
+        self.breed = breed
+        self.owner = owner
+    
+    def bark(self):
+        print("Woof!")
+
+dog1 = Dog("Fido", "Black lab", "Alan Turing")
+dog2 = Dog("Spot", "Dalmatian", "Ada Lovelace")
+
+dog1.bark()
+dog2.bark()
